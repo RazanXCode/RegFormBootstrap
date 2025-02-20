@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
+        <div class="container-fluid">
+
+            <!-- Logo in the nav -->
+            <a class="navbar-brand" href="#">
+                <img src="https://www.atomcamp.com/wp-content/uploads/2022/06/atomcamp-green-logo.png" class="img-fluid"
+                    style="height: 80px;">
+            </a>
+
+            <!-- Navbar toggle button for small screen -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links for navigation -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-4 fw-bold">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Webinars</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main header text (for website introduction) -->
+    <div id="mainText">
+        <h1>Learning begins here.</h1>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+        <div class="row w-100">
+            <!-- Form container with responsive design -->
+            <div class="col-md-6 mx-auto">
+                <form id="registrationForm" class="p-4 border rounded bg-light shadow">
+                    <!-- Name input field -->
+                    <div class="form-group mb-3">
+                        <label for="name" class="form-label fs-4">Name</label>
+                        <input id="name" type="text" class="form-control form-control-lg"
+                            placeholder="Enter your full name">
+                        <small id="nameError" class="text-danger"></small>
+                    </div>
+
+                    <!-- Email input field -->
+                    <div class="form-group mb-3">
+                        <label for="email" class="form-label fs-4">Email</label>
+                        <input id="email" type="email" class="form-control form-control-lg"
+                            placeholder="Enter your email">
+                        <small id="emailError" class="text-danger"></small>
+                    </div>
+
+                    <!-- Password input field -->
+                    <div class="form-group mb-3">
+                        <label for="password" class="form-label fs-4">Password</label>
+                        <input id="password" type="password" class="form-control form-control-lg"
+                            placeholder="Enter your Password">
+                        <small id="passwordError" class="text-danger"></small>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button id="submit" type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            let isValid = true;
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            // Clear previous errors
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+
+            // Name Validation
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name is required";
+                isValid = false;
+            }
+
+            // Email Validation
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === "") {
+                document.getElementById("emailError").innerText = "Email is required";
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format";
+                isValid = false;
+            }
+
+            // Password Validation
+            let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+            if (password === "") {
+                document.getElementById("passwordError").innerText = "Password is required";
+                isValid = false;
+            } else if (!passwordPattern.test(password)) {
+                document.getElementById("passwordError").innerText = "Password must be at least 8 characters, with letters, numbers, and special characters";
+                isValid = false;
+            }
+
+            // Form Submission
+            if (isValid) {
+                alert("Form submitted successfully!");
+                form.submit();
+            }
+        });
+
+    </script>
+</body>
+
+</html>
